@@ -13,5 +13,8 @@ def test_convert_forward():
             rates=[("USD", "EUR", 0.74)], value=3, current='USD', to='EUR'),
         2) == 2.22
 
-# def test_convert_reverse():
-#     assert convert()
+def test_convert_reveres():
+   assert round(
+        convert(
+            rates=[("USD", "EUR", 0.74)], value=1, current='EUR', to='USD'),
+        2) == 1.35

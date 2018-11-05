@@ -1,6 +1,17 @@
-from currency import convert_same_currency
-rates = []
+import pytest
+from currency import convert
 
 def test_convert_same_currency():
-    assert convert_same_currency(rates, 12, current = "e", to = "e") == 12
-    assert convert_same_currency(rates, 11, current = "e", to = "e") == 11
+    assert convert([], 12, current = "USD", to = "USD") == 12
+    assert convert([], 11, current = "USD", to = "USD") == 11
+
+def test_convert_forward():
+    assert convert(
+        rates=[("USD", "EUR", 0.74)], value=1, current='USD', to='EUR') == 0.74
+    assert round(
+        convert(
+            rates=[("USD", "EUR", 0.74)], value=3, current='USD', to='EUR'),
+        2) == 2.22
+
+# def test_convert_reverse():
+#     assert convert()
